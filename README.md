@@ -1,5 +1,6 @@
 # Micro Frontend com Vite Plugin Federation
 
+![Demo](./live-demo.gif)
 Dashboard administrativo demonstrando arquitetura de Micro Frontends com React, TypeScript e Tailwind CSS.
 
 ## Arquitetura
