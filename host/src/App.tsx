@@ -4,6 +4,32 @@ import Header from './components/Header'
 
 const MetricsDashboard = lazy(() => import('mfeMetrics/MetricsDashboard'))
 
+
+interface ErrorBoundaryProps {
+  fallback: React.ReactNode
+  children: React.ReactNode
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true }
+  }
+
+  render() {
+    if (this.state.hasError) return this.props.fallback
+    return this.props.children
+  }
+}
+
 function LoadingFallback() {
   return (
     <div className="flex items-center justify-center h-64">
@@ -14,6 +40,18 @@ function LoadingFallback() {
     </div>
   )
 }
+
+function ErrorFallback() {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <div className="flex flex-col items-center gap-3">
+        <p className="text-sm text-red-400">Módulo indisponível no momento.</p>
+      </div>
+    </div>
+  )
+}
+
+
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -28,9 +66,11 @@ export default function App() {
             <h1 className="text-xl font-semibold text-slate-800">Dashboard</h1>
             <p className="text-sm text-slate-400 mt-1">Bem-vindo de volta, Daniel.</p>
           </div>
-          <Suspense fallback={<LoadingFallback />}>
-            <MetricsDashboard />
-          </Suspense>
+          <ErrorBoundary fallback={<ErrorFallback />}>
+            <Suspense fallback={<LoadingFallback />}>
+              <MetricsDashboard />
+            </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
     </div>
