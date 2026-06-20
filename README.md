@@ -1,4 +1,4 @@
-# mf-admin — Micro Frontend com Vite Plugin Federation
+# Micro Frontend com Vite Plugin Federation
 
 Dashboard administrativo demonstrando arquitetura de Micro Frontends com React, TypeScript e Tailwind CSS.
 
