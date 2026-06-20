@@ -102,4 +102,3 @@ Em times grandes, um único repositório front-end vira gargalo — qualquer mud
 - Times diferentes deployam de forma independente
 - Falha em um módulo não derruba o produto inteiro
 - É possível até misturar frameworks (React + Vue) no mesmo shell
-# microfrontend-dashoboard-example
